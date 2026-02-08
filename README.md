@@ -15,7 +15,7 @@ To recreate this project with the same configuration:
 
 ```sh
 # recreate this project
-npx sv create --template demo --types ts --add eslint playwright tailwindcss="plugins:typography,forms" sveltekit-adapter="adapter:cloudflare+cfTarget:workers" devtools-json storybook --install npm .
+npx sv create --template minimal --types ts --add eslint prettier playwright tailwindcss="plugins:typography,forms" sveltekit-adapter="adapter:cloudflare+cfTarget:workers" devtools-json --install npm .
 ```
 
 ## Developing
