@@ -1,6 +1,6 @@
 {
 	"$schema": "./node_modules/wrangler/config-schema.json",
-	"name": "sticker-haven-svelte",
+	"name": "sticker-haven-website",
 	"compatibility_date": "2026-02-08",
 	"compatibility_flags": [
 		"nodejs_als"
