@@ -1,4 +1,8 @@
-<h1>Sticker Haven</h1>
+<section class="jumbotron">
+    <h1>Sticker Haven</h1>
+    <p>Custom stickers for artists and more!</p>
+    <a class="button" href="mailto:contact@stickerhaven.shop?subject=Quote%20Request&body=Hi,%20I%20would%20like%20to%20get%20a%20quote%20for%20an%20order%20of%20custom%20stickers!">Contact to Order</a>
+</section>
 <section>
     <h2>About</h2>
     <p>Sticker Haven is a printing company founded with the goal of providing cheap, fast, and high quality sticker printing options for artists and small businesses!</p>

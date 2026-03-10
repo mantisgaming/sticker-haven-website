@@ -1,7 +1,8 @@
 <script lang="ts">
-	import './layout.css';
+	import './layout.scss';
 	import logo from '$lib/assets/favicon-228.png';
 	import Header from '../Collections/Header.svelte';
+	import Footer from '../Collections/Footer.svelte';
 
 	let { children } = $props();
 </script>
@@ -12,14 +13,4 @@
 
 <Header />
 {@render children()}
-
-<style lang="scss">
-	:global(:root) {
-		--primary: #75d8df;
-		--header-text: #141414;
-	}
-
-	:global(*) {
-		box-sizing: border-box;
-	}
-</style>
+<Footer />

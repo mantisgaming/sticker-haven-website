@@ -38,6 +38,9 @@
 		background-color: var(--primary);
 		height: 6rem;
 		z-index: 10;
+        > div {
+            width: 100%;
+        }
 	}
 
 	.title {
