@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import { resolve } from '$app/paths';
 	import logo from '$lib/assets/favicon-228.png';
 	import NavLink from '../Components/NavLink.svelte';
@@ -122,5 +122,23 @@
 
 	nav li::before {
 		content: none;
+	}
+
+	@media (max-width: 1200px) {
+		header {
+			padding: 0 1rem;
+		}
+
+		.title {
+			padding: 0.5rem;
+			height: 100%;
+			display: flex;
+			align-items: center;
+		}
+
+		img {
+			width: auto;
+			height: clamp(2.75rem, 25vw, calc(var(--header-height) - 1rem));
+		}
 	}
 </style>

@@ -1,5 +1,21 @@
 <script lang="ts">
     import Jumbotron from '../Components/Jumbotron.svelte';
+    import Testimonial from '../Components/Testimonial.svelte';
+
+    const testimonials = [
+        {
+            quote: 'Truly above and Beyond. I contacted sticker Haven to get some stickers made for an upcoming party. Max was incredibly responsive and communicated clearly. The pricing was exceptionally competitive and when Max realized that the mail may not get me my stickers in time, he went above and beyond to expedite delivery. I would absolutely work with him again and give my full recommendation.',
+            author: 'Paul Jasper'
+        },
+        {
+            quote: "Great quality stickers of all shapes and sizes (I've used them for an assortment of shapes and sizes). Extremely affordable and fast, this might have to do with being local. It's also extremely easy to get in contact with the owner for help or consulting. I will definitely be using Sticker Haven for my personal use and business needs. Thank you for being such a great local business!",
+            author: 'Adryen Gonzalez'
+        },
+        {
+            quote: 'Sticker Haven was highly responsive and expertly walked us through the entire process of printing a professional-looking set of stickers. They helped us clarify what we wanted in terms of a final product and their quoted price was extremely competitive. They worked diligently with us to get our designs production-ready and the end result was fantastic. I cannot recommend Sticker Haven highly enough!',
+            author: 'Bob Carmichael'
+        }
+    ];
 </script>
 
 <Jumbotron>
@@ -114,18 +130,9 @@
         <div class="content-subsection">
             <h2>Customer Testimony</h2>
             <div class="columns-3  text-left">
-                <div class="content-subsection">
-                    <p>★★★★★ - “Truly above and Beyond. I contacted sticker Haven to get some stickers made for an upcoming party. Max was incredibly responsive and communicated clearly. The pricing was exceptionally competitive and when Max realized that the mail may not get me my stickers in time, he went above and beyond to expedite delivery. I would absolutely work with him again and give my full recommendation.”</p>
-                    <p><strong>— Paul Jasper</strong></p>
-                </div>
-                <div class="content-subsection">
-                    <p>★★★★★ - “Great quality stickers of all shapes and sizes (I've used them for an assortment of shapes and sizes). Extremely affordable and fast, this might have to do with being local. It's also extremely easy to get in contact with the owner for help or consulting. I will definitely be using Sticker Haven for my personal use and business needs. Thank you for being such a great local business!”</p>
-                    <p><strong>— Adryen Gonzalez</strong></p>
-                </div>
-                <div class="content-subsection">
-                    <p>★★★★★ - “Sticker Haven was highly responsive and expertly walked us through the entire process of printing a professional-looking set of stickers. They helped us clarify what we wanted in terms of a final product and their quoted price was extremely competitive. They worked diligently with us to get our designs production-ready and the end result was fantastic. I cannot recommend Sticker Haven highly enough!”</p>
-                    <p><strong>— Bob Carmichael</strong></p>
-                </div>
+                {#each testimonials as testimonial}
+                    <Testimonial quote={testimonial.quote} author={testimonial.author} />
+                {/each}
             </div>
         </div>
         <div class="content-subsection">
