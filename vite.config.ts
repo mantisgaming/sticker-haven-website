@@ -3,8 +3,20 @@ import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
 import { cloudflare } from '@cloudflare/vite-plugin';
 
-export default defineConfig({ plugins: [sveltekit(), cloudflare({
-    viteEnvironment: {
-        name: 'staging'
-    },
-}), devtoolsJson()] });
+export default defineConfig(() => {
+    const isLocalDevelopment = process.env.LOCAL_DEVELOPMENT === 'true';
+
+    const plugins = [sveltekit(), devtoolsJson()];
+
+    if (isLocalDevelopment) {
+        plugins.push(
+            ...cloudflare({
+                viteEnvironment: {
+                    name: 'staging'
+                }
+            })
+        );
+    }
+
+    return { plugins };
+});
