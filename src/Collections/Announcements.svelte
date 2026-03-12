@@ -10,9 +10,9 @@
 
 <style lang="scss">
     .announcements {
-        position: absolute;
-        top: var(--header-height);
-        left: 0;
+        position: sticky;
+        top: 0;
+        margin-top: var(--header-height);
         width: 100%;
         z-index: 9;
         display: flex;
