@@ -104,11 +104,23 @@
 	nav ul {
 		display: flex;
 		height: 100%;
+		margin: 0;
 		padding: 1rem 0;
 		gap: 0.5rem;
+		list-style: none;
 	}
 
 	nav li {
 		height: 100%;
+		margin: 0;
+		padding-left: 0;
+	}
+
+	nav li + li {
+		margin-top: 0;
+	}
+
+	nav li::before {
+		content: none;
 	}
 </style>

@@ -332,7 +332,7 @@ video {
     --jumbotron-button-bg: #75d8df;
     --jumbotron-button-hover: #56c7cf;
     --jumbotron-button-text: #141414;
-    
+
     background-color: var(--primary);
 }
 
@@ -344,6 +344,7 @@ h5,
 h6 {
     line-height: 1.2;
     font-weight: var(--heading-weight);
+    text-align: center;
 }
 
 h1 {
@@ -385,11 +386,11 @@ ol {
     list-style: decimal;
 }
 
-ul > li {
+ul>li {
     position: relative;
 }
 
-ul > li::before {
+ul>li::before {
     content: '';
     position: absolute;
     top: 0.58em;
@@ -400,7 +401,7 @@ ul > li::before {
     background-color: color-mix(in srgb, var(--header-text) 55%, var(--primary));
 }
 
-ol > li::marker {
+ol>li::marker {
     color: color-mix(in srgb, var(--header-text) 60%, var(--primary));
     font-weight: 700;
 }
@@ -409,13 +410,17 @@ li {
     padding-left: 0.1rem;
 }
 
-li + li {
+li+li {
     margin-top: 0.45rem;
 }
 
-li > ul,
-li > ol {
+li>ul,
+li>ol {
     margin-top: 0.45rem;
+}
+
+p {
+    text-align: center;
 }
 
 nav ul,
@@ -438,7 +443,7 @@ footer ol {
     background-color: var(--content-section-bg-b);
 }
 
-.content-section > * + * {
+.content-section>*+* {
     margin-top: var(--content-block-gap);
 }
 
@@ -448,20 +453,37 @@ footer ol {
     gap: clamp(2rem, 4vw, 3rem);
 }
 
-.content-section.split-layout > * + * {
+.content-section.split-layout>*+* {
     margin-top: 0;
 }
 
-.content-panel > * + * {
+.content-panel>*+* {
     margin-top: var(--content-block-gap);
 }
 
-.content-subsection + .content-subsection {
+.content-subsection+.content-subsection {
     margin-top: clamp(2rem, 4vw, 3rem);
 }
 
-.content-subsection > * + * {
+.content-subsection>*+* {
     margin-top: var(--content-block-gap);
+}
+
+.columns-3 {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: clamp(1rem, 2vw, 1.5rem);
+}
+
+.columns-3>.content-subsection+.content-subsection {
+    margin-top: 0;
+}
+
+.text-left {
+    &,
+    & * {
+        text-align: left;
+    }
 }
 
 .pricing-table {
@@ -502,5 +524,13 @@ footer ol {
 @media (max-width: 900px) {
     .content-section.split-layout {
         grid-template-columns: 1fr;
+    }
+
+    .columns-3 {
+        grid-template-columns: 1fr;
+    }
+
+    .columns-3>.content-subsection+.content-subsection {
+        margin-top: clamp(2rem, 4vw, 3rem);
     }
 }
