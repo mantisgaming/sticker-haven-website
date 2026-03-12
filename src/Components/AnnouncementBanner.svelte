@@ -38,6 +38,7 @@
 
         p {
             margin: 0;
+            padding-inline: clamp(2rem, 4vw, 2.75rem);
             text-align: center;
             color: var(--header-text);
             font-weight: 700;
