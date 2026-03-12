@@ -10,24 +10,40 @@
 		"binding": "ASSETS",
 		"directory": ".svelte-kit/cloudflare"
 	},
+	"d1_databases": [
+		{
+			"binding": "DB",
+			"database_name": "sticker-haven-prod",
+			"database_id": "REPLACE_WITH_PROD_D1_DATABASE_ID",
+			"preview_database_id": "REPLACE_WITH_PROD_D1_PREVIEW_DATABASE_ID"
+		}
+	],
 	"workers_dev": true,
 	"preview_urls": true,
 	"routes": [
 		{
-			"pattern": "stickerhaven.shop/*",
-			"zone_name": "stickerhaven.shop"
+			"pattern": "stickerhaven.shop",
+			"custom_domain": true
 		},
 		{
-			"pattern": "www.stickerhaven.shop/*",
-			"zone_name": "stickerhaven.shop"
+			"pattern": "www.stickerhaven.shop",
+			"custom_domain": true
 		}
 	],
 	"env": {
 		"staging": {
+			"d1_databases": [
+				{
+					"binding": "DB",
+					"database_name": "sticker-haven-staging",
+					"database_id": "REPLACE_WITH_STAGING_D1_DATABASE_ID",
+					"preview_database_id": "REPLACE_WITH_STAGING_D1_PREVIEW_DATABASE_ID"
+				}
+			],
 			"routes": [
 				{
-					"pattern": "dev.stickerhaven.shop/*",
-					"zone_name": "stickerhaven.shop"
+					"pattern": "dev.stickerhaven.shop",
+					"custom_domain": true
 				}
 			],
 		}
