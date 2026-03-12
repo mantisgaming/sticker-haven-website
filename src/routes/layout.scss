@@ -66,6 +66,7 @@ html,
 body {
     margin: 0;
     line-height: inherit;
+    background-color: var(--primary);
 }
 
 hr {
@@ -331,6 +332,8 @@ video {
     --jumbotron-button-bg: #75d8df;
     --jumbotron-button-hover: #56c7cf;
     --jumbotron-button-text: #141414;
+    
+    background-color: var(--primary);
 }
 
 h1,
