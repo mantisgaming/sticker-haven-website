@@ -21,5 +21,15 @@
 			"pattern": "www.stickerhaven.shop/*",
 			"zone_name": "stickerhaven.shop"
 		}
-	]
+	],
+	"env": {
+		"staging": {
+			"routes": [
+				{
+					"pattern": "dev.stickerhaven.shop/*",
+					"zone_name": "stickerhaven.shop"
+				}
+			],
+		}
+	}
 }
