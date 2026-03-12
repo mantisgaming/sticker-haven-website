@@ -2,12 +2,24 @@
 	"$schema": "./node_modules/wrangler/config-schema.json",
 	"name": "sticker-haven-svelte",
 	"compatibility_date": "2026-02-08",
-	"compatibility_flags": ["nodejs_als"],
+	"compatibility_flags": [
+		"nodejs_als"
+	],
 	"main": ".svelte-kit/cloudflare/_worker.js",
 	"assets": {
 		"binding": "ASSETS",
 		"directory": ".svelte-kit/cloudflare"
 	},
 	"workers_dev": true,
-	"preview_urls": true
+	"preview_urls": true,
+	"routes": [
+		{
+			"pattern": "stickerhaven.shop/*",
+			"zone_name": "stickerhaven.shop"
+		},
+		{
+			"pattern": "www.stickerhaven.shop/*",
+			"zone_name": "stickerhaven.shop"
+		}
+	]
 }
