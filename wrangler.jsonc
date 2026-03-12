@@ -13,9 +13,8 @@
 	"d1_databases": [
 		{
 			"binding": "DB",
-			"database_name": "sticker-haven-prod",
-			"database_id": "REPLACE_WITH_PROD_D1_DATABASE_ID",
-			"preview_database_id": "REPLACE_WITH_PROD_D1_PREVIEW_DATABASE_ID"
+			"database_name": "stickerhaven-production-d1",
+			"database_id": "53dfaf9c-3a8e-4cfb-92fc-3c77dbb4386f"
 		}
 	],
 	"workers_dev": true,
@@ -35,9 +34,8 @@
 			"d1_databases": [
 				{
 					"binding": "DB",
-					"database_name": "sticker-haven-staging",
-					"database_id": "REPLACE_WITH_STAGING_D1_DATABASE_ID",
-					"preview_database_id": "REPLACE_WITH_STAGING_D1_PREVIEW_DATABASE_ID"
+					"database_name": "stickerhaven-staging-d1",
+					"database_id": "60e7d138-ea4e-491d-8e61-7b2e6fa6d706"
 				}
 			],
 			"routes": [
