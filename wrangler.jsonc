@@ -29,6 +29,15 @@
 			"custom_domain": true
 		}
 	],
+	"observability": {
+		"enabled": true,
+		"head_sampling_rate": 0.1,
+		"logs": {
+			"enabled": true,
+			"head_sampling_rate": 0.1,
+			"invocation_logs": true
+		}
+	},
 	"env": {
 		"staging": {
 			"d1_databases": [
