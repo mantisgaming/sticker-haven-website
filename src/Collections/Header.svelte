@@ -1,6 +1,25 @@
 <script>
 	import { resolve } from '$app/paths';
 	import logo from '$lib/assets/favicon-228.png';
+	import NavLink from '../Components/NavLink.svelte';
+
+	const topLevelPageModules = import.meta.glob('/src/routes/*/+page.svelte', { eager: true });
+
+	const routeLinks = Object.keys(topLevelPageModules)
+		.map((filePath) => filePath.match(/\/src\/routes\/([^/]+)\/\+page\.svelte$/)?.[1] ?? null)
+		.filter((segment) => segment !== null)
+		.map((segment) => ({
+			href: `/${segment}`,
+			label: segment
+				.split('-')
+				.map((part) => part.charAt(0).toUpperCase() + part.slice(1))
+				.join(' '),
+			exact: false
+		}))
+		.sort((a, b) => a.label.localeCompare(b.label));
+
+	const navLinks = [{ href: '/', label: 'Home', exact: true }, ...routeLinks];
+	const showNavigation = false;
 </script>
 
 <header>
@@ -11,11 +30,17 @@
 					<img alt="Sticker Haven logo" src={logo} />
 				</a>
 			</div>
-			<nav>
-				<ul>
-					<a href={resolve('/about')}>About</a>
-				</ul>
-			</nav>
+			{#if showNavigation}
+				<nav>
+					<ul>
+						{#each navLinks as link}
+							<li>
+								<NavLink href={link.href} exact={link.exact}>{link.label}</NavLink>
+							</li>
+						{/each}
+					</ul>
+				</nav>
+			{/if}
 		</div>
 	</div>
 </header>
@@ -31,12 +56,15 @@
 	header {
 		width: 100%;
 		display: flex;
-		position: relative;
+		position: absolute;
+		top: 0;
+		left: 0;
 		flex-direction: row;
 		justify-content: space-around;
 		padding: 0 2.5rem;
 		background-color: var(--primary);
-		height: 6rem;
+		box-shadow: 0 -1.5rem 3rem 3rem #ffffff40;
+		height: var(--header-height);
 		z-index: 10;
         > div {
             width: 100%;
@@ -53,6 +81,12 @@
 		}
 		a {
 			position: relative;
+			transition: filter 0.25s ease;
+			filter: drop-shadow(0 0 0 rgba(255, 255, 255, 0.35));
+
+			&:hover {
+				filter: drop-shadow(0 0 0.8rem rgba(255, 255, 255, 0.35));
+			}
 		}
 	}
 
@@ -68,22 +102,13 @@
 	}
 
 	nav ul {
+		display: flex;
 		height: 100%;
 		padding: 1rem 0;
+		gap: 0.5rem;
 	}
 
-	nav a {
+	nav li {
 		height: 100%;
-		padding: 0 1rem;
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		font-weight: bold;
-		color: var(--header-text);
-		border-radius: 1rem;
-
-		&:hover {
-			background-color: rgba(255, 255, 255, 0.25);
-		}
 	}
 </style>
