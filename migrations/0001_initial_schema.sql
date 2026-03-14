@@ -1,3 +1,5 @@
+-- SQLite migration script for Sticker Haven initial schema.
+
 -- Enforce referential integrity for all declared foreign keys.
 PRAGMA foreign_keys = ON;
 
@@ -555,6 +557,141 @@ CREATE INDEX IF NOT EXISTS idx_production_jobs_due_at
 -- Index to accelerate active/soft-deleted production job filters.
 CREATE INDEX IF NOT EXISTS idx_production_jobs_deleted_at
 	ON production_jobs (deleted_at);
+
+-- Soft-delete triggers: convert DELETE into deleted_at timestamp updates.
+-- These triggers preserve rows and make repeated DELETE calls idempotent.
+
+-- Soft-delete users by stamping deleted_at and skipping hard delete.
+CREATE TRIGGER IF NOT EXISTS trg_users_soft_delete
+BEFORE DELETE ON users
+FOR EACH ROW
+BEGIN
+	UPDATE users
+	SET deleted_at = COALESCE(deleted_at, CURRENT_TIMESTAMP)
+	WHERE user_id = OLD.user_id;
+	SELECT RAISE(IGNORE);
+END;
+
+-- Soft-delete addresses by stamping deleted_at and skipping hard delete.
+CREATE TRIGGER IF NOT EXISTS trg_addresses_soft_delete
+BEFORE DELETE ON addresses
+FOR EACH ROW
+BEGIN
+	UPDATE addresses
+	SET deleted_at = COALESCE(deleted_at, CURRENT_TIMESTAMP)
+	WHERE user_id = OLD.user_id
+	  AND address_id = OLD.address_id;
+	SELECT RAISE(IGNORE);
+END;
+
+-- Soft-delete payment_methods by stamping deleted_at and skipping hard delete.
+CREATE TRIGGER IF NOT EXISTS trg_payment_methods_soft_delete
+BEFORE DELETE ON payment_methods
+FOR EACH ROW
+BEGIN
+	UPDATE payment_methods
+	SET deleted_at = COALESCE(deleted_at, CURRENT_TIMESTAMP)
+	WHERE user_id = OLD.user_id
+	  AND payment_method_id = OLD.payment_method_id;
+	SELECT RAISE(IGNORE);
+END;
+
+-- Soft-delete orders by stamping deleted_at and skipping hard delete.
+CREATE TRIGGER IF NOT EXISTS trg_orders_soft_delete
+BEFORE DELETE ON orders
+FOR EACH ROW
+BEGIN
+	UPDATE orders
+	SET deleted_at = COALESCE(deleted_at, CURRENT_TIMESTAMP)
+	WHERE user_id = OLD.user_id
+	  AND order_id = OLD.order_id;
+	SELECT RAISE(IGNORE);
+END;
+
+-- Soft-delete products by stamping deleted_at and skipping hard delete.
+CREATE TRIGGER IF NOT EXISTS trg_products_soft_delete
+BEFORE DELETE ON products
+FOR EACH ROW
+BEGIN
+	UPDATE products
+	SET deleted_at = COALESCE(deleted_at, CURRENT_TIMESTAMP)
+	WHERE product_id = OLD.product_id;
+	SELECT RAISE(IGNORE);
+END;
+
+-- Soft-delete product_designs by stamping deleted_at and skipping hard delete.
+CREATE TRIGGER IF NOT EXISTS trg_product_designs_soft_delete
+BEFORE DELETE ON product_designs
+FOR EACH ROW
+BEGIN
+	UPDATE product_designs
+	SET deleted_at = COALESCE(deleted_at, CURRENT_TIMESTAMP)
+	WHERE design_id = OLD.design_id;
+	SELECT RAISE(IGNORE);
+END;
+
+-- Soft-delete order_items by stamping deleted_at and skipping hard delete.
+CREATE TRIGGER IF NOT EXISTS trg_order_items_soft_delete
+BEFORE DELETE ON order_items
+FOR EACH ROW
+BEGIN
+	UPDATE order_items
+	SET deleted_at = COALESCE(deleted_at, CURRENT_TIMESTAMP)
+	WHERE user_id = OLD.user_id
+	  AND order_id = OLD.order_id
+	  AND order_item_id = OLD.order_item_id;
+	SELECT RAISE(IGNORE);
+END;
+
+-- Soft-delete order_status_history by stamping deleted_at and skipping hard delete.
+CREATE TRIGGER IF NOT EXISTS trg_order_status_history_soft_delete
+BEFORE DELETE ON order_status_history
+FOR EACH ROW
+BEGIN
+	UPDATE order_status_history
+	SET deleted_at = COALESCE(deleted_at, CURRENT_TIMESTAMP)
+	WHERE user_id = OLD.user_id
+	  AND order_id = OLD.order_id
+	  AND status_event_id = OLD.status_event_id;
+	SELECT RAISE(IGNORE);
+END;
+
+-- Soft-delete shipments by stamping deleted_at and skipping hard delete.
+CREATE TRIGGER IF NOT EXISTS trg_shipments_soft_delete
+BEFORE DELETE ON shipments
+FOR EACH ROW
+BEGIN
+	UPDATE shipments
+	SET deleted_at = COALESCE(deleted_at, CURRENT_TIMESTAMP)
+	WHERE user_id = OLD.user_id
+	  AND order_id = OLD.order_id
+	  AND shipment_id = OLD.shipment_id;
+	SELECT RAISE(IGNORE);
+END;
+
+-- Soft-delete design_proof_approvals by stamping deleted_at and skipping hard delete.
+CREATE TRIGGER IF NOT EXISTS trg_design_proof_approvals_soft_delete
+BEFORE DELETE ON design_proof_approvals
+FOR EACH ROW
+BEGIN
+	UPDATE design_proof_approvals
+	SET deleted_at = COALESCE(deleted_at, CURRENT_TIMESTAMP)
+	WHERE user_id = OLD.user_id
+	  AND order_id = OLD.order_id
+	  AND proof_id = OLD.proof_id;
+	SELECT RAISE(IGNORE);
+END;
+
+-- Soft-delete production_jobs by stamping deleted_at and skipping hard delete.
+CREATE TRIGGER IF NOT EXISTS trg_production_jobs_soft_delete
+BEFORE DELETE ON production_jobs
+FOR EACH ROW
+BEGIN
+	UPDATE production_jobs
+	SET deleted_at = COALESCE(deleted_at, CURRENT_TIMESTAMP)
+	WHERE job_id = OLD.job_id;
+	SELECT RAISE(IGNORE);
+END;
 
 -- Seed default category for current business model.
 INSERT OR IGNORE INTO product_categories (code, name)
