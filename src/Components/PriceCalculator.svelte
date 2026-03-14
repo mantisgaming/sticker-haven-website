@@ -239,7 +239,8 @@
     }
 
     .results {
-        th, td {
+        th,
+        td {
             white-space: nowrap;
         }
     }
