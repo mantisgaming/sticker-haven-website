@@ -1,5 +1,136 @@
 # Sticker Haven Website
 
+Sticker Haven Website is a SvelteKit storefront for a custom sticker business. It includes public-facing marketing pages, reusable UI components, and Cloudflare-ready deployment/configuration so the app can run on edge infrastructure.
+
+## Project overview
+
+- Framework: SvelteKit + Vite + TypeScript
+- Hosting/runtime target: Cloudflare (Wrangler + Cloudflare adapter)
+- Data layer: Cloudflare D1 with SQL migrations in `migrations/`
+- Testing: Playwright end-to-end tests in `e2e/`
+
+## Key folders
+
+- `src/routes/`: pages and route-level layouts
+- `src/Components/`: reusable UI components
+- `src/Collections/`: shared page sections (header, footer, announcements)
+- `migrations/`: database schema migrations
+- `static/`: static assets (images, fonts, robots file)
+
+## Local development
+
+Install dependencies:
+
+```sh
+npm install
+```
+
+Start the dev server:
+
+```sh
+npm run dev
+```
+
+Useful commands:
+
+```sh
+npm run check      # type and Svelte checks
+npm run lint       # lint + formatting checks
+npm run test       # Playwright e2e tests
+npm run build      # production build
+```
+
+## Deployment
+
+This project is configured for Cloudflare deployment via Wrangler.
+
+Build the app:
+
+```sh
+npm run build
+```
+
+Preview the Cloudflare worker locally (staging config):
+
+```sh
+npm run preview
+```
+
+Deploy to Cloudflare:
+
+Before deploying, make sure required staging/production secrets are set with Wrangler (see `Environment variables` below).
+
+```sh
+# staging environment
+npx wrangler deploy -e staging
+
+# production environment
+npx wrangler deploy
+```
+
+## Environment variables
+
+This project uses a hybrid approach:
+
+- Local development: `.env`
+- Deployed environments (staging/production): Wrangler secrets
+
+### Required Cloudflare bindings
+
+- `DB` (D1 database binding)
+	- Production: configured in `wrangler.jsonc` under top-level `d1_databases`
+	- Staging: configured in `wrangler.jsonc` under `env.staging.d1_databases`
+- `ASSETS` (static asset binding)
+	- Configured in `wrangler.jsonc` under `assets.binding`
+
+### .env setup
+
+Create a `.env` file in the project root:
+
+```sh
+cp .env.example .env
+```
+
+If `.env.example` does not exist yet, create `.env` manually and add your secret values.
+
+Example:
+
+```env
+SECRET_API_KEY=your-secret-value
+SECRET_WEBHOOK_TOKEN=your-webhook-token
+```
+
+Guidelines:
+
+- Keep secrets in `.env` (do not commit real secret values).
+- Only use `PUBLIC_` prefix for values that are safe to expose to the browser.
+- Restart the dev server after changing `.env` values.
+
+### Deployment secrets (Wrangler)
+
+Set secrets for Cloudflare environments with Wrangler:
+
+```sh
+# set production secret
+npx wrangler secret put SECRET_NAME
+
+# set staging secret
+npx wrangler secret put SECRET_NAME -e staging
+```
+
+Use Wrangler secrets for anything required at runtime in deployed Workers.
+
+### Local development behavior
+
+- Run `npm run dev` for local development.
+- Database migration commands target local/staging/production based on the script you run.
+
+After adding or changing Cloudflare bindings/secrets, regenerate worker types:
+
+```sh
+npm run gen
+```
+
 ## Database migrations (Cloudflare D1)
 
 - Migrations live in `migrations/`.
