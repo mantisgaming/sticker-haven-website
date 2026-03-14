@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { page } from '$app/state';
 	import '../layout.scss';
 	import logo from '$lib/assets/favicon-228.png';
 	import Header from '../Collections/Header.svelte';
@@ -6,7 +7,70 @@
 	import Announcements from '../Collections/Announcements.svelte';
 	import AnnouncementBanner from '../Components/AnnouncementBanner.svelte';
 
-	let { children } = $props();
+	type JsonLdEntry = Record<string, unknown>;
+
+	type SeoData = {
+		title?: string;
+		description?: string;
+		image?: string;
+		type?: string;
+		canonical?: string;
+		jsonLd?: JsonLdEntry | JsonLdEntry[];
+	};
+
+	let { children, data } = $props<{ children: () => unknown; data?: { seo?: SeoData } }>();
+
+	const siteName = 'Sticker Haven';
+	const siteUrl = 'https://www.stickerhaven.shop';
+	const defaultDescription =
+		'Affordable custom die-cut and kiss-cut stickers for artists, students, and small businesses.';
+	const defaultImage = '/img/Banner.png';
+
+	const toAbsoluteUrl = (value: string): string => {
+		if (value.startsWith('http://') || value.startsWith('https://')) {
+			return value;
+		}
+
+		return `${siteUrl}${value.startsWith('/') ? value : `/${value}`}`;
+	};
+
+	const toJsonLdArray = (value?: JsonLdEntry | JsonLdEntry[]): JsonLdEntry[] => {
+		if (!value) {
+			return [];
+		}
+
+		return Array.isArray(value) ? value : [value];
+	};
+
+	const seo = $derived(data?.seo ?? {});
+	const pathname = $derived(page.url.pathname === '/' ? '/' : page.url.pathname.replace(/\/+$/, ''));
+	const canonicalUrl = $derived(seo.canonical ?? `${siteUrl}${pathname}`);
+	const title = $derived(seo.title ?? siteName);
+	const description = $derived(seo.description ?? defaultDescription);
+	const pageType = $derived(seo.type ?? 'website');
+	const imageUrl = $derived(toAbsoluteUrl(seo.image ?? defaultImage));
+
+	const defaultJsonLd = $derived<JsonLdEntry[]>([
+		{
+			'@context': 'https://schema.org',
+			'@type': 'WebSite',
+			name: siteName,
+			url: siteUrl
+		},
+		{
+			'@context': 'https://schema.org',
+			'@type': 'LocalBusiness',
+			name: siteName,
+			url: siteUrl,
+			description,
+			email: 'contact@stickerhaven.shop',
+			image: imageUrl,
+			serviceArea: 'United States',
+			sameAs: ['https://share.google/lgxR1onu38l5pBhd4']
+		}
+	]);
+
+	const jsonLdEntries = $derived([...defaultJsonLd, ...toJsonLdArray(seo.jsonLd)]);
 
 	const announcements: [string, string][] = [
 		[
@@ -17,14 +81,26 @@
 </script>
 
 <svelte:head>
-	<title>Sticker Haven</title>
+	<title>{title}</title>
 	<link rel="icon" href={logo} />
+	<link rel="canonical" href={canonicalUrl} />
 	<meta name="theme-color" content="#09909F" />
-	<meta name="description" content="High-quality, cheap die cut stickers online!" />
-	<meta property="og:title" content="Sticker Haven" />
-	<meta property="og:description" content="High-quality, cheap die cut stickers online!" />
-	<meta property="og:image" content={logo} />
-	<meta property="og:url" content="https://www.stickerhaven.shop/" />
+	<meta name="description" content={description} />
+	<meta property="og:type" content={pageType} />
+	<meta property="og:site_name" content={siteName} />
+	<meta property="og:title" content={title} />
+	<meta property="og:description" content={description} />
+	<meta property="og:image" content={imageUrl} />
+	<meta property="og:url" content={canonicalUrl} />
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:title" content={title} />
+	<meta name="twitter:description" content={description} />
+	<meta name="twitter:image" content={imageUrl} />
+	{#each jsonLdEntries as entry}
+		<script type="application/ld+json">
+			{JSON.stringify(entry)}
+		</script>
+	{/each}
 </svelte:head>
 
 <Header />
