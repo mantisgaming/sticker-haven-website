@@ -63,7 +63,7 @@
             leadTime += 1; // Add a day if laminate is selected
         }
 
-        leadTime += Math.ceil(totalArea / 3000); // Add a day for every 3000 sq in of total area
+        leadTime += Math.floor(totalArea / 3000); // Add a day for every 3000 sq in of total area
 
         if (totalArea > 10000) {
             leadTime += 5; // Add extra time for very large orders
