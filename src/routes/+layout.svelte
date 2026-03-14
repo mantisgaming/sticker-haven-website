@@ -1,5 +1,5 @@
 <script lang="ts">
-	import './layout.scss';
+	import '../layout.scss';
 	import logo from '$lib/assets/favicon-228.png';
 	import Header from '../Collections/Header.svelte';
 	import Footer from '../Collections/Footer.svelte';
@@ -36,3 +36,12 @@
 
 {@render children()}
 <Footer />
+
+<style lang="scss">
+	.top {
+		position: absolute;
+		top: 0;
+		width: 100%;
+		z-index: 10;
+	}
+</style>

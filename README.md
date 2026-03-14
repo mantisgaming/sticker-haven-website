@@ -17,6 +17,36 @@ Sticker Haven Website is a SvelteKit storefront for a custom sticker business. I
 - `migrations/`: database schema migrations
 - `static/`: static assets (images, fonts, robots file)
 
+## Styling file structure
+
+Global styles are loaded from the route layout:
+
+- `src/routes/+layout.svelte` imports `src/layout.scss`
+
+The top-level stylesheet is an aggregator:
+
+- `src/layout.scss`
+	- `@use './styles/fonts'`
+	- `@use './styles/reset'`
+	- `@use './styles/theme'`
+	- `@use './styles/content'`
+
+Style modules are grouped by type:
+
+- `src/styles/fonts.scss`: `@font-face` declarations
+- `src/styles/reset.scss`: base/reset and element normalization
+- `src/styles/theme.scss`: theme-level aggregator for general elements
+	- `src/styles/theme/tokens.scss`: CSS custom properties and theme tokens
+	- `src/styles/theme/headings.scss`: `h1`–`h6` styles
+	- `src/styles/theme/lists.scss`: list and nav/footer list behavior
+	- `src/styles/theme/text.scss`: general text element defaults (for example `p`)
+- `src/styles/content.scss`: shared content-layout aggregator
+	- `src/styles/content/sections.scss`: content section and layout grids
+	- `src/styles/content/utilities.scss`: utility classes (for example `.text-left`)
+	- `src/styles/content/tables.scss`: default table styling
+
+Rule of thumb for new styles: keep component-specific styles inside each Svelte component file; use `src/styles/theme/*` only for global element/theme defaults; treat `src/styles/content/sections.scss` as the shared exception for reusable section layout patterns.
+
 ## Local development
 
 Install dependencies:

@@ -58,7 +58,7 @@
     <div class="content-panel">
         <h2>Pricing Examples</h2>
         <p>Every project is quoted individually based on size, material, finish, and quantity. Here is a sample sheet for 2&quot;x2&quot; die-cut, laminated stickers:</p>
-        <table class="pricing-table">
+        <table>
             <thead>
                 <tr>
                     <th>Quantity</th>

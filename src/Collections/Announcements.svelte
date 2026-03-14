@@ -17,5 +17,7 @@
         z-index: 9;
         display: flex;
         flex-direction: column;
+        shape-outside: inset(0% 100% 100% 100%);
+        float: left;
     }
 </style>

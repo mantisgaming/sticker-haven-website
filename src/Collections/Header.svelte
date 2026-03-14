@@ -91,7 +91,7 @@
 	}
 
 	img {
-		width: 10rem;
+		width: var(--header-logo-size);
 		aspect-ratio: 1/1;
 	}
 

@@ -1,0 +1,27 @@
+:root {
+    --primary: #75d8df;
+    --header-text: #141414;
+    --header-height: 4rem;
+    --header-logo-size: 8rem;
+    --footer-bg: #75d8df;
+    --content-max-width: 72rem;
+    --content-padding-inline: clamp(1rem, 4vw, 2.5rem);
+    --section-gap-block: clamp(2rem, 6vw, 4rem);
+    --content-block-gap: clamp(0.5rem, 1.5vw, 0.875rem);
+    --content-section-bg-a: #f0f8ff;
+    --content-section-bg-b: #c1f1f5;
+    --h1-size: clamp(2.25rem, 4vw, 3rem);
+    --h2-size: clamp(1.75rem, 3vw, 2.25rem);
+    --h3-size: clamp(1.5rem, 2.5vw, 1.875rem);
+    --h4-size: 1.375rem;
+    --h5-size: 1.125rem;
+    --h6-size: 1rem;
+    --heading-weight: 700;
+    --jumbotron-text: #ffffff;
+    --jumbotron-overlay: rgba(20, 20, 20, 0.35);
+    --jumbotron-button-bg: #75d8df;
+    --jumbotron-button-hover: #56c7cf;
+    --jumbotron-button-text: #141414;
+
+    background-color: var(--primary);
+}
