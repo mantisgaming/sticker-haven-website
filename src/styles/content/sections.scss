@@ -1,60 +1,60 @@
 .content-section {
-    width: 100%;
-    padding-inline: max(var(--content-padding-inline), calc((100% - var(--content-max-width)) / 2));
-    padding-block: var(--section-gap-block);
-    background-color: var(--content-section-bg-a);
+	width: 100%;
+	padding-inline: max(var(--content-padding-inline), calc((100% - var(--content-max-width)) / 2));
+	padding-block: var(--section-gap-block);
+	background-color: var(--content-section-bg-a);
 }
 
 .content-section:nth-of-type(even) {
-    background-color: var(--content-section-bg-b);
+	background-color: var(--content-section-bg-b);
 }
 
-.content-section>*+* {
-    margin-top: var(--content-block-gap);
+.content-section > * + * {
+	margin-top: var(--content-block-gap);
 }
 
 .content-section.split-layout {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: clamp(2rem, 4vw, 3rem);
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: clamp(2rem, 4vw, 3rem);
 }
 
-.content-section.split-layout>*+* {
-    margin-top: 0;
+.content-section.split-layout > * + * {
+	margin-top: 0;
 }
 
-.content-panel>*+* {
-    margin-top: var(--content-block-gap);
+.content-panel > * + * {
+	margin-top: var(--content-block-gap);
 }
 
-.content-subsection+.content-subsection {
-    margin-top: clamp(2rem, 4vw, 3rem);
+.content-subsection + .content-subsection {
+	margin-top: clamp(2rem, 4vw, 3rem);
 }
 
-.content-subsection>*+* {
-    margin-top: var(--content-block-gap);
+.content-subsection > * + * {
+	margin-top: var(--content-block-gap);
 }
 
 .columns-3 {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: clamp(1rem, 2vw, 1.5rem);
+	display: grid;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+	gap: clamp(1rem, 2vw, 1.5rem);
 }
 
-.columns-3>.content-subsection+.content-subsection {
-    margin-top: 0;
+.columns-3 > .content-subsection + .content-subsection {
+	margin-top: 0;
 }
 
 @media (max-width: 900px) {
-    .content-section.split-layout {
-        grid-template-columns: 1fr;
-    }
+	.content-section.split-layout {
+		grid-template-columns: 1fr;
+	}
 
-    .columns-3 {
-        grid-template-columns: 1fr;
-    }
+	.columns-3 {
+		grid-template-columns: 1fr;
+	}
 
-    .columns-3>.content-subsection+.content-subsection {
-        margin-top: clamp(2rem, 4vw, 3rem);
-    }
+	.columns-3 > .content-subsection + .content-subsection {
+		margin-top: clamp(2rem, 4vw, 3rem);
+	}
 }

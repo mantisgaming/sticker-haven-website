@@ -1,23 +1,23 @@
 <script lang="ts">
-    let { children } = $props();
+	let { children } = $props();
 </script>
 
 {#if children}
-    <section class="announcements" aria-label="Announcements">
-        {@render children()}
-    </section>
+	<section class="announcements" aria-label="Announcements">
+		{@render children()}
+	</section>
 {/if}
 
 <style lang="scss">
-    .announcements {
-        position: sticky;
-        top: 0;
-        margin-top: var(--header-height);
-        width: 100%;
-        z-index: 9;
-        display: flex;
-        flex-direction: column;
-        shape-outside: inset(0% 100% 100% 100%);
-        float: left;
-    }
+	.announcements {
+		position: sticky;
+		top: 0;
+		margin-top: var(--header-height);
+		width: 100%;
+		z-index: 9;
+		display: flex;
+		flex-direction: column;
+		shape-outside: inset(0% 100% 100% 100%);
+		float: left;
+	}
 </style>

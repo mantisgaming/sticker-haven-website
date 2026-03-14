@@ -7,9 +7,12 @@
 	import AnnouncementBanner from '../Components/AnnouncementBanner.svelte';
 
 	let { children } = $props();
-	
+
 	const announcements: [string, string][] = [
-		['Holographic stickers now available! - 50ct of 2"x2" holographic stickers for only $25.86', 'Store announcement']
+		[
+			'Holographic stickers now available! - 50ct of 2"x2" holographic stickers for only $25.86',
+			'Store announcement'
+		]
 	];
 </script>
 
@@ -28,7 +31,7 @@
 
 {#if announcements.length > 0}
 	<Announcements>
-		{#each announcements as [message, ariaLabel]}
+		{#each announcements as [message, ariaLabel] (message)}
 			<AnnouncementBanner {message} {ariaLabel} />
 		{/each}
 	</Announcements>
@@ -36,12 +39,3 @@
 
 {@render children()}
 <Footer />
-
-<style lang="scss">
-	.top {
-		position: absolute;
-		top: 0;
-		width: 100%;
-		z-index: 10;
-	}
-</style>

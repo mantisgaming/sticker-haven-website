@@ -33,7 +33,7 @@
 			{#if showNavigation}
 				<nav>
 					<ul>
-						{#each navLinks as link}
+						{#each navLinks as link (link.href)}
 							<li>
 								<NavLink href={link.href} exact={link.exact}>{link.label}</NavLink>
 							</li>
@@ -50,7 +50,7 @@
 		display: flex;
 		flex-direction: row;
 		justify-content: space-between;
-        height: 100%;
+		height: 100%;
 	}
 
 	header {
@@ -66,9 +66,9 @@
 		box-shadow: 0 -1.5rem 3rem 3rem #ffffff40;
 		height: var(--header-height);
 		z-index: 10;
-        > div {
-            width: 100%;
-        }
+		> div {
+			width: 100%;
+		}
 	}
 
 	.title {

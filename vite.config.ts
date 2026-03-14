@@ -4,19 +4,19 @@ import { defineConfig } from 'vite';
 import { cloudflare } from '@cloudflare/vite-plugin';
 
 export default defineConfig(() => {
-    const isLocalDevelopment = process.env.LOCAL_DEVELOPMENT === 'true';
+	const isLocalDevelopment = process.env.LOCAL_DEVELOPMENT === 'true';
 
-    const plugins = [sveltekit(), devtoolsJson()];
+	const plugins = [sveltekit(), devtoolsJson()];
 
-    if (isLocalDevelopment) {
-        plugins.push(
-            ...cloudflare({
-                viteEnvironment: {
-                    name: 'staging'
-                }
-            })
-        );
-    }
+	if (isLocalDevelopment) {
+		plugins.push(
+			...cloudflare({
+				viteEnvironment: {
+					name: 'staging'
+				}
+			})
+		);
+	}
 
-    return { plugins };
+	return { plugins };
 });

@@ -1,12 +1,15 @@
 <script>
+	import { resolve } from '$app/paths';
 	import { page } from '$app/state';
 
 	let { href, exact = false, children } = $props();
 
-	const isActive = $derived(exact ? page.url.pathname === href : page.url.pathname.startsWith(href));
+	const isActive = $derived(
+		exact ? page.url.pathname === href : page.url.pathname.startsWith(href)
+	);
 </script>
 
-<a href={href} class:active={isActive} aria-current={isActive ? 'page' : undefined}>
+<a href={resolve(href)} class:active={isActive} aria-current={isActive ? 'page' : undefined}>
 	{@render children?.()}
 </a>
 
@@ -34,7 +37,9 @@
 			height: 0.25rem;
 			border-radius: 0.25rem;
 			background-color: color-mix(in srgb, var(--header-text) 25%, transparent);
-			transition: width 0.25s ease, background-color 0.25s ease;
+			transition:
+				width 0.25s ease,
+				background-color 0.25s ease;
 		}
 
 		&:hover::after,
