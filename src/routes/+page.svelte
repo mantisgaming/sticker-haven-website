@@ -1,6 +1,7 @@
 <script lang="ts">
     import Jumbotron from '../Components/Jumbotron.svelte';
     import Testimonial from '../Components/Testimonial.svelte';
+    import PriceCalculator from '../Components/PriceCalculator.svelte';
 
     const testimonials = [
         {
@@ -75,57 +76,13 @@
 
 <section class="content-section split-layout">
     <div class="content-panel">
-        <h2>Pricing Examples</h2>
+        <h2>Price Calculator</h2>
         <p>
-            Every project is quoted individually based on size, material, finish, and quantity. Here
-            is a sample sheet for 2&quot;x2&quot; die-cut, laminated stickers:
+            Enter your sticker dimensions, quantity, and material options to get an instant
+            estimate. Every project is quoted individually &mdash; contact us to confirm your final
+            price.
         </p>
-        <table>
-            <thead>
-                <tr>
-                    <th>Quantity</th>
-                    <th>Total Cost</th>
-                    <th>Price Per Piece</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>25</td>
-                    <td>$17.15</td>
-                    <td>$0.69</td>
-                </tr>
-                <tr>
-                    <td>50</td>
-                    <td>$23.52</td>
-                    <td>$0.47</td>
-                </tr>
-                <tr>
-                    <td>100</td>
-                    <td>$34.61</td>
-                    <td>$0.35</td>
-                </tr>
-                <tr>
-                    <td>200</td>
-                    <td>$53.36</td>
-                    <td>$0.27</td>
-                </tr>
-                <tr>
-                    <td>300</td>
-                    <td>$70.64</td>
-                    <td>$0.24</td>
-                </tr>
-                <tr>
-                    <td>500</td>
-                    <td>$105.58</td>
-                    <td>$0.21</td>
-                </tr>
-            </tbody>
-        </table>
-        <p>
-            Need an exact number? Send your artwork, dimensions, and quantity for a personalized
-            quote.
-        </p>
-        <p>A live pricing calculator is coming soon to make planning your order even easier.</p>
+        <PriceCalculator />
     </div>
 
     <div class="content-panel">
