@@ -29,7 +29,7 @@
     >
 </Jumbotron>
 <section class="content-section text-center">
-    <h2>About</h2>
+    <h2 id="about">About</h2>
     <p>
         Sticker Haven was created to make custom stickers more affordable, faster to order, and
         easier to access for artists and small businesses.
@@ -45,7 +45,7 @@
 
 <section class="content-section split-layout">
     <div class="content-panel">
-        <h2>Sticker Products</h2>
+        <h2 id="sticker-products">Sticker Products</h2>
         <p>
             We offer a variety of custom sticker formats for artists, student organizations, and
             businesses:
@@ -60,7 +60,7 @@
     </div>
 
     <div class="content-panel">
-        <h2>Turnaround & Delivery</h2>
+        <h2 id="turnaround-delivery">Turnaround & Delivery</h2>
         <p>
             Whether you need stickers quickly for an event or are planning ahead, we offer flexible
             fulfillment options:
@@ -76,7 +76,7 @@
 
 <section class="content-section split-layout">
     <div class="content-panel">
-        <h2>Price Calculator</h2>
+        <h2 id="price-calculator">Price Calculator</h2>
         <p>
             Enter your sticker dimensions, quantity, and material options to get an instant
             estimate. Every project is quoted individually &mdash; contact us to confirm your final
@@ -87,7 +87,7 @@
 
     <div class="content-panel">
         <div class="content-subsection">
-            <h2>How to Order</h2>
+            <h2 id="how-to-order">How to Order</h2>
             <ol>
                 <li>Send your artwork, desired quantity, and sticker specs.</li>
                 <li>Review and approve your digital proof.</li>
@@ -105,7 +105,7 @@
             </p>
         </div>
         <div class="content-subsection">
-            <h2>Who We Work With</h2>
+            <h2 id="who-we-work-with">Who We Work With</h2>
             <p>
                 Sticker Haven supports independent artists, WPI students, clubs, and small
                 businesses that want quality custom stickers without high minimums or expensive
@@ -118,7 +118,7 @@
 <section class="content-section">
     <div class="content-panel">
         <div class="content-subsection">
-            <h2>Customer Testimony</h2>
+            <h2 id="customer-testimony">Customer Testimony</h2>
             <div class="columns-3 text-left">
                 {#each testimonials as testimonial (testimonial.author)}
                     <Testimonial quote={testimonial.quote} author={testimonial.author} />
