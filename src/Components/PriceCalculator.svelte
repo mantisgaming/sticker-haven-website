@@ -231,6 +231,10 @@
         gap: clamp(0.5rem, 1vw, 0.75rem);
     }
 
+    .results th {
+        white-space: nowrap;
+    }
+
     .disclaimer {
         font-size: 0.875rem;
         opacity: 0.8;
