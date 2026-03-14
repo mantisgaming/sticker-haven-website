@@ -1,42 +1,73 @@
-# sv
+# Sticker Haven Website
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+## Database migrations (Cloudflare D1)
 
-## Creating a project
+- Migrations live in `migrations/`.
+- Baseline schema migration: `migrations/0001_initial_schema.sql`.
 
-If you're seeing this, you've probably already done this step. Congrats!
-
-```sh
-# create a new project
-npx sv create my-app
-```
-
-To recreate this project with the same configuration:
+Create a new migration file:
 
 ```sh
-# recreate this project
-npx sv create --template minimal --types ts --add eslint prettier playwright tailwindcss="plugins:typography,forms" sveltekit-adapter="adapter:cloudflare+cfTarget:workers" devtools-json --install npm .
+npm run db:migrations:create -- <migration_name>
 ```
 
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+Apply migrations:
 
 ```sh
-npm run dev
+# local D1
+npm run db:migrate:local
 
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
+# staging D1 (wrangler env: staging)
+npm run db:migrate:staging
+
+# production D1 (remote)
+npm run db:migrate:prod
 ```
 
-## Building
-
-To create a production version of your app:
+List migration status:
 
 ```sh
-npm run build
+npm run db:migrations:list
 ```
 
-You can preview the production build with `npm run preview`.
+## How to read the schema
 
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+The baseline schema is designed for a self-serve ordering flow and lives in `migrations/0001_initial_schema.sql`.
+
+### Core entities
+
+- `users`: customer accounts.
+- `addresses`, `payment_methods`: reusable customer checkout data.
+- `orders`: order header/status/total.
+- `order_items`: line items tied to an exact `design_id + design_version`.
+
+### Catalog and design model
+
+- `product_categories` and `products`: catalog structure.
+- `product_designs`: stable design identity with a pointer to `current_version`.
+- `product_design_versions`: immutable version history (`file_url`, `specifications`).
+
+### Customer proof and production flow
+
+- `design_proof_approvals`: proof artifacts sent to customer + approval decision timeline.
+- `order_status_history`: immutable status event log for each order.
+- `shipments`: carrier/tracking and delivery timestamps.
+- `production_jobs`: internal print/cut/laminate/pack workflow tracking.
+
+### Typical order lifecycle
+
+1. User creates an order (`orders`) and line items (`order_items`).
+2. Line items reference specific design versions from `product_design_versions`.
+3. Proof(s) are sent and tracked in `design_proof_approvals`.
+4. Order status changes are appended to `order_status_history`.
+5. Internal execution is tracked in `production_jobs`.
+6. Fulfillment updates are stored in `shipments`.
+
+### Soft-delete convention
+
+Many tables include `deleted_at`.
+
+- `deleted_at IS NULL` => active row
+- `deleted_at IS NOT NULL` => soft-deleted row
+
+Use active-only filters in app queries unless historical records are required.
