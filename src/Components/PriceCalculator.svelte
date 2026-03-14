@@ -238,8 +238,10 @@
         gap: clamp(0.5rem, 1vw, 0.75rem);
     }
 
-    .results th {
-        white-space: nowrap;
+    .results {
+        th, td {
+            white-space: nowrap;
+        }
     }
 
     .disclaimer {
