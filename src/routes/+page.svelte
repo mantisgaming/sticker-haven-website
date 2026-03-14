@@ -107,9 +107,22 @@
         <div class="content-subsection">
             <h2 id="who-we-work-with">Who We Work With</h2>
             <p>
-                Sticker Haven supports independent artists, WPI students, clubs, and small
-                businesses that want quality custom stickers without high minimums or expensive
-                shipping.
+                Sticker Haven works with independent artists, students, clubs, families, nonprofits,
+                and businesses of all sizes. If you need quality custom stickers without high
+                minimums or expensive shipping, we are here to help.
+            </p>
+        </div>
+        <div class="content-subsection">
+            <h2 id="other-products">Other Products</h2>
+            <p>
+                Sticker Haven also offers photo printing and poster printing for personal projects,
+                events, and business needs. The product lineup is actively expanding into custom
+                metal signs and printed magnets so customers have even more ways to bring their
+                ideas to life.
+            </p>
+            <p>
+                Interested in custom products beyond stickers? Contact us to discuss your project
+                and see how we can help make it a reality.
             </p>
         </div>
     </div>
