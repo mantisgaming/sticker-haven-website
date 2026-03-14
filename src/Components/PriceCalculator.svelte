@@ -50,7 +50,10 @@
         const profitPerPiece = area * profitPerSqrInch;
 
         const total =
-            Math.round(100 * (quantity * (materialCostPerPiece + profitPerPiece) + fixedCost + lamFlatPrice)) / 100;
+            Math.round(
+                100 *
+                    (quantity * (materialCostPerPiece + profitPerPiece) + fixedCost + lamFlatPrice)
+            ) / 100;
 
         const totalArea = area * quantity;
 
@@ -109,7 +112,11 @@
             params.baseMaterial,
             params.laminateMaterial
         );
-        return { total: estimate.total, perPiece: estimate.total / qty, leadTime: estimate.leadTime };
+        return {
+            total: estimate.total,
+            perPiece: estimate.total / qty,
+            leadTime: estimate.leadTime
+        };
     }
 
     let customResult = $derived.by(() => {
