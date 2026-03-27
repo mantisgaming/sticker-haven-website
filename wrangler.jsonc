@@ -19,10 +19,6 @@
     "preview_urls": true,
     "routes": [
         {
-            "pattern": "stickerhaven.shop",
-            "custom_domain": true
-        },
-        {
             "pattern": "www.stickerhaven.shop",
             "custom_domain": true
         }
