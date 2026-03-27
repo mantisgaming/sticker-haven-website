@@ -1,13 +1,12 @@
 <script>
     import { resolve } from '$app/paths';
-    import logo from '$lib/assets/favicon-228.png';
     import BackToTopButton from '../Components/BackToTopButton.svelte';
 </script>
 
 <footer class="footer">
     <div class="left">
         <a href={resolve('/')}>
-            <img alt="Sticker Haven Logo" src={logo} />
+            <img alt="Sticker Haven Logo" src="/img/favicon-288.png" />
         </a>
     </div>
     <div class="center">
