@@ -1,7 +1,6 @@
 <script lang="ts">
     import { page } from '$app/state';
     import '../layout.scss';
-    import logo from '$lib/assets/favicon-228.png';
     import Header from '../Collections/Header.svelte';
     import Footer from '../Collections/Footer.svelte';
     import Announcements from '../Collections/Announcements.svelte';
@@ -87,7 +86,6 @@
 
 <svelte:head>
     <title>{title}</title>
-    <link rel="icon" href={logo} />
     <link rel="canonical" href={canonicalUrl} />
     <meta name="theme-color" content="#09909F" />
     <meta name="description" content={description} />
