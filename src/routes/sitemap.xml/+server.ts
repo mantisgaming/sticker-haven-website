@@ -1,5 +1,7 @@
 import type { RequestHandler } from './$types';
 
+export const prerender = true;
+
 const siteUrl = 'https://www.stickerhaven.shop';
 
 const routes = ['/'];

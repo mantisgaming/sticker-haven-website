@@ -5,6 +5,8 @@
     "type": "module",
     "scripts": {
         "dev": "cross-env LOCAL_DEVELOPMENT=true vite dev",
+        "clean": "rimraf .svelte-kit dist",
+        "prebuild": "npm run clean",
         "build": "vite build",
         "preview": "wrangler dev .svelte-kit/cloudflare/_worker.js --port 4173 -e=staging",
         "db:migrations:create": "wrangler d1 migrations create DB",
@@ -37,6 +39,7 @@
         "prettier": "^3.8.1",
         "prettier-plugin-svelte": "^3.4.1",
         "prettier-plugin-tailwindcss": "^0.7.2",
+        "rimraf": "^6.0.1",
         "sass-embedded": "^1.97.3",
         "svelte": "^5.49.2",
         "svelte-check": "^4.3.6",
