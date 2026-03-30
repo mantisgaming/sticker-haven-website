@@ -8,7 +8,7 @@
 
 <style lang="scss">
     .jumbotron {
-        background-image: url('/img/Banner.png');
+        background-image: url('/img/Banner.jpg');
         background-position: center;
         background-size: cover;
         background-repeat: no-repeat;
