@@ -1,6 +1,5 @@
 <script lang="ts">
     import { resolve } from '$app/paths';
-    import logo from '$lib/assets/favicon-228.png';
     import NavLink from '../Components/NavLink.svelte';
 
     const topLevelPageModules = import.meta.glob('/src/routes/*/+page.svelte', { eager: true });
@@ -27,7 +26,7 @@
         <div class="flex">
             <div class="title">
                 <a href={resolve('/')}>
-                    <img alt="Sticker Haven logo" src={logo} />
+                    <img alt="Sticker Haven logo" src="/img/favicon-288.png" />
                 </a>
             </div>
             {#if showNavigation}
