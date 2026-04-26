@@ -14,7 +14,8 @@ declare global {
         // interface PageData {}
         // interface PageState {}
         // interface Platform {}
-    }
+    };
+    function gtag(...args: any[]);
 }
 
 export {};

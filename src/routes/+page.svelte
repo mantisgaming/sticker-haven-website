@@ -2,6 +2,8 @@
     import Jumbotron from '../Components/Jumbotron.svelte';
     import Testimonial from '../Components/Testimonial.svelte';
     import PriceCalculator from '../Components/PriceCalculator.svelte';
+    import type { MouseEventHandler } from 'svelte/elements';
+    import { goto } from '$app/navigation';
 
     const testimonials = [
         {
@@ -17,6 +19,17 @@
             author: 'Bob Carmichael'
         }
     ];
+
+    function onContactClicked(e: MouseEvent) {
+        e.preventDefault();
+
+        gtag('event', 'conversion', {
+            send_to: 'AW-18102255680/s1itCI7tnqMcEMCA6rdD',
+            event_callback: () => {
+                window.location.href = (e.target as HTMLAnchorElement).href;
+            }
+        });
+    }
 </script>
 
 <Jumbotron>
@@ -25,7 +38,7 @@
     <a
         class="cta"
         href="mailto:contact@stickerhaven.shop?subject=Quote%20Request&body=Hi,%20I%20would%20like%20to%20get%20a%20quote%20for%20an%20order%20of%20custom%20stickers!"
-        >Contact to Order</a
+        onclick={onContactClicked}>Contact to Order</a
     >
 </Jumbotron>
 <section class="content-section text-center">
@@ -100,7 +113,7 @@
                 <a
                     class="link-cta"
                     href="mailto:contact@stickerhaven.shop?subject=Quote%20Request&body=Hi,%20I%20would%20like%20to%20get%20a%20quote%20for%20an%20order%20of%20custom%20stickers!"
-                    >Email us to start your order.</a
+                    onclick={onContactClicked}>Email us to start your order.</a
                 >
             </p>
         </div>
