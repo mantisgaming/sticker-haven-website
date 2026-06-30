@@ -78,7 +78,7 @@
 
     const announcements: [string, string][] = [
         [
-            'Holographic stickers now available! - 50ct of 2"x2" laminated holographic stickers for only $32.03',
+            'Lead times extended until August 5th - Expect a longer wait than usual for orders',
             'Store announcement'
         ]
     ];
