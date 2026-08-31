@@ -77,10 +77,10 @@
     );
 
     const announcements: [string, string][] = [
-        [
-            'Lead times extended until August 5th - Expect a longer wait than usual for orders',
-            'Store announcement'
-        ]
+        // [
+        //     'Lead times extended until August 5th - Expect a longer wait than usual for orders',
+        //     'Store announcement'
+        // ]
     ];
 </script>
 
