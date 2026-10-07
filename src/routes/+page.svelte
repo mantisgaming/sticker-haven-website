@@ -2,8 +2,6 @@
     import Jumbotron from '../Components/Jumbotron.svelte';
     import Testimonial from '../Components/Testimonial.svelte';
     import PriceCalculator from '../Components/PriceCalculator.svelte';
-    import type { MouseEventHandler } from 'svelte/elements';
-    import { goto } from '$app/navigation';
 
     const testimonials = [
         {
@@ -23,12 +21,8 @@
     function onContactClicked(e: MouseEvent) {
         e.preventDefault();
 
-        gtag('event', 'conversion', {
-            send_to: 'AW-18102255680/s1itCI7tnqMcEMCA6rdD',
-            event_callback: () => {
-                window.location.href = (e.target as HTMLAnchorElement).href;
-            }
-        });
+        gtag('event', 'conversion');
+        window.location.href = (e.target as HTMLAnchorElement).href;
     }
 </script>
 

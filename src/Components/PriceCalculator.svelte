@@ -24,8 +24,8 @@
         const areaPadding = 0.5; // Add half an inch to each dimension to account for cutting space
         const areaMultiplier = 1.5; // Multiplier to account for material waste and overhead
         const fixedCost = 10; // Base cost for setup and handling
-        const minProfitPerSqrInch = 0.0125; // Minimum profit per square inch of sticker area
-        const maxProfitPerSqrInch = 0.025; // Maximum profit per square inch of sticker area
+        const minProfitPerSqrInch = 0.02; // Minimum profit per square inch of sticker area
+        const maxProfitPerSqrInch = 0.03; // Maximum profit per square inch of sticker area
         const profitExponent = 100; // Exponent to reduce profit margin for larger quantities
         const inkPricePerSqrInch = 0.0025; // Cost of ink per square inch
 
@@ -84,8 +84,8 @@
 
     const LAMINATE_MATERIALS = [
         { value: 'none', label: 'None', pricePerSqrInch: 0, flatPrice: 0 },
-        { value: 'UV3-G', label: 'Gloss', pricePerSqrInch: 0.0025, flatPrice: 5 },
-        { value: 'UV3-M', label: 'Matte', pricePerSqrInch: 0.0025, flatPrice: 5 }
+        { value: 'UV3-G', label: 'Gloss', pricePerSqrInch: 0.005, flatPrice: 5 },
+        { value: 'UV3-M', label: 'Matte', pricePerSqrInch: 0.005, flatPrice: 5 }
     ] as const;
 
     let width = $state<string>('2');
