@@ -76,16 +76,16 @@
 
     const BASE_MATERIALS = [
         { value: 'DV4-G', label: 'White Glossy Vinyl', pricePerSqrInch: 0.0025 },
-        { value: 'DV4-M', label: 'White Matte Vinyl', pricePerSqrInch: 0.0025 },
+        // { value: 'DV4-M', label: 'White Matte Vinyl', pricePerSqrInch: 0.0025 },
         { value: 'UV3-G', label: 'Transparent Glossy Vinyl', pricePerSqrInch: 0.0025 },
-        { value: 'UV3-M', label: 'Transparent Matte Vinyl', pricePerSqrInch: 0.0025 },
+        // { value: 'UV3-M', label: 'Transparent Matte Vinyl', pricePerSqrInch: 0.0025 },
         { value: 'RV4-S', label: 'Sparkly Holographic Vinyl', pricePerSqrInch: 0.01 }
     ] as const;
 
     const LAMINATE_MATERIALS = [
         { value: 'none', label: 'None', pricePerSqrInch: 0, flatPrice: 0 },
-        { value: 'UV3-G', label: 'Gloss', pricePerSqrInch: 0.005, flatPrice: 5 },
-        { value: 'UV3-M', label: 'Matte', pricePerSqrInch: 0.005, flatPrice: 5 }
+        { value: 'UV3-G', label: 'Glossy', pricePerSqrInch: 0.005, flatPrice: 5 },
+        // { value: 'UV3-M', label: 'Matte', pricePerSqrInch: 0.005, flatPrice: 5 }
     ] as const;
 
     let width = $state<string>('2');
