@@ -14,7 +14,8 @@ declare global {
         // interface PageData {}
         // interface PageState {}
         // interface Platform {}
-    };
+    }
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     function gtag(...args: any[]);
 }
 

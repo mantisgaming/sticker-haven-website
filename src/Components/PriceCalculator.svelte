@@ -84,7 +84,7 @@
 
     const LAMINATE_MATERIALS = [
         { value: 'none', label: 'None', pricePerSqrInch: 0, flatPrice: 0 },
-        { value: 'UV3-G', label: 'Glossy', pricePerSqrInch: 0.005, flatPrice: 5 },
+        { value: 'UV3-G', label: 'Glossy', pricePerSqrInch: 0.005, flatPrice: 5 }
         // { value: 'UV3-M', label: 'Matte', pricePerSqrInch: 0.005, flatPrice: 5 }
     ] as const;
 
