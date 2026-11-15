@@ -21,7 +21,7 @@
     let {
         children,
         data
-    } : {
+    }: {
         children: Snippet;
         data?: { seo?: SeoData };
     } = $props();
