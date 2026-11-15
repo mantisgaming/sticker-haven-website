@@ -1,4 +1,5 @@
 <script lang="ts">
+    import type { Snippet } from 'svelte';
     import { page } from '$app/state';
     import '../layout.scss';
     import Header from '../Collections/Header.svelte';
@@ -17,7 +18,13 @@
         jsonLd?: JsonLdEntry | JsonLdEntry[];
     };
 
-    let { children, data } = $props<{ children: () => unknown; data?: { seo?: SeoData } }>();
+    let {
+        children,
+        data
+    } : {
+        children: Snippet;
+        data?: { seo?: SeoData };
+    } = $props();
 
     const siteName = 'Sticker Haven';
     const siteUrl = 'https://www.stickerhaven.shop';
